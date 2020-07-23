@@ -50,6 +50,10 @@ namespace BaGet.Hosting
             // See: https://github.com/loic-sharma/BaGet/issues/291
             return await _searchService.AutocompleteAsync(
                 query,
+                skip: 0,
+                take: 20,
+                includePrerelease: true,
+                includeSemVer2: true,
                 cancellationToken: cancellationToken);
         }
 
@@ -58,9 +62,7 @@ namespace BaGet.Hosting
             CancellationToken cancellationToken = default)
         {
             // TODO: Add other dependents parameters.
-            return await _searchService.FindDependentsAsync(
-                packageId,
-                cancellationToken: cancellationToken);
+            return await _searchService.FindDependentsAsync(packageId, cancellationToken);
         }
     }
 }
